@@ -1,10 +1,22 @@
-import { StrictMode } from 'react'
+/**
+ * hook
+ * 生命週期
+ * redux-saga
+ * jotai 
+ * tanskack-query
+ * 
+ * useffect
+ * usestate 
+ * props 傳遞
+ */
+import { BrowserRouter } from 'react-router-dom'
+
 import { createRoot } from 'react-dom/client'
+import Application from './App'
 import './index.css'
-import App from './App.jsx'
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-)
+  <BrowserRouter>
+    <Application />
+  </BrowserRouter>
+);

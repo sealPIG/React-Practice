@@ -1,35 +1,54 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// Router, useNavigate
 
-function App() {
-  const [count, setCount] = useState(0)
+import { useNavigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom'
+import Home from './Components/Home'
+import Page1 from './Components/Page1'
+import Page2 from './Components/Page2'
+// import Page3 from './Components/Page3';
 
+import { Flex, Segmented } from 'antd';
+
+function Application() {
+  const navigate = useNavigate();
+
+  const handleButtonClick = (pageName) => {
+    navigate(pageName);
+  };
+
+  // return <Pagination current={current} onChange={onChange} total={50} />;
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/page1" element={<Page1 />} />
+        <Route path="/page2" element={<Page2 name='Page 2' />} />
+      </Routes>
+
+      <Flex gap="small" align="flex-start" vertical style={{position:'fixed', bottom:'20px', left:'20px'}}>
+        <Segmented options={[
+          {
+            label: (
+              <div style={{ padding: 4 }}>Home</div>
+            ),
+            value: '/'
+          },
+          {
+            label: (
+              <div style={{ padding: 4 }}>Page1</div>
+            ),
+            value: '/page1'
+          },
+          {
+            label: (
+              <div style={{ padding: 4 }}>Page2</div>
+            ),
+            value: '/page2'
+          },]}
+          onChange={handleButtonClick} />
+      </Flex>
     </>
-  )
+  );
 }
 
-export default App
+export default Application
