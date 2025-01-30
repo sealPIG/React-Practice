@@ -1,13 +1,43 @@
 // 生命週期、props 傳遞
 
 import React from 'react'
+import { Select, Space } from 'antd';
+
+import Outter from './Tools';
+
+function Selector() {
+  const handleChange = (param) => {
+    console.log('Param selected ' + param);
+  };
+
+  return (
+    <div className='selector'>
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <h3>Param select for page 3</h3>
+        <Space wrap>
+          <Select
+            onChange={handleChange}
+            defaultValue="Param1"
+            style={{ width: 120 }}
+            options={[
+              { value: 'Param1', label: 'Param1', },
+              { value: 'Param2', label: 'Param2', },
+              { value: 'Param3', label: 'Param3', },
+            ]}
+          />
+        </Space>
+      </div>
+      <hr />
+    </div>
+  );
+}
 
 class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = { date: new Date() };
 
-    console.log(this.state.date.toLocaleTimeString() + ' Home Constructor');
+    console.log('[Home] Constructor');
   }
 
   componentDidMount() {
@@ -16,11 +46,11 @@ class Home extends React.Component {
       1000
     );
 
-    console.log(this.state.date.toLocaleTimeString() + ' Home Did Mount');
+    console.log('[Home] Mounting');
   }
 
   componentWillUnmount() {
-    console.log(this.state.date.toLocaleTimeString() + ' Home Will Unmount');
+    console.log('[Home] Unmounting');
   }
 
   tick() {
@@ -30,10 +60,14 @@ class Home extends React.Component {
   }
 
   render() {
+    console.log('[Home] Render');
+
     return (
-      <div style={{ width: '90vw', height: '70vh', borderRadius: '20px', padding: '2rem', border: '2px solid White' }}>
-        <h1>{this.state.date.toLocaleTimeString()}</h1>
-      </div>
+      <Outter title='Home' subTitle={this.state.date.toLocaleTimeString()}>
+        <div className='home-selector'>
+          <Selector></Selector>
+        </div>
+      </Outter>
     );
   }
 }

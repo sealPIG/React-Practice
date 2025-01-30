@@ -1,26 +1,40 @@
-// usestate
+// usestate, useffect, 生命週期
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react';
+import Outter from './Tools'
 
-function Page1() {
+export default function Page3() {
+  console.log('[Page 1] Render');
+
   const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    setCount(0);
+    console.log('[Page 1] Mounting ' + count);
+  }, []);
+
+  useEffect(() => {
+    console.log('[Page 1] Updating ' + count);
+
+    return () => {
+      console.log('[Page 1] Unmounting ' + count);
+    }
+  }, [count]);
 
   function handleClick() {
     setCount(count + 1);
   }
 
   return (
-    <div style={{ width: '90vw', height: '70vh', borderRadius: '20px', padding: '2rem', border: '2px solid White' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', marginRight: '20px', marginLeft: '20px' }}>
-        <h1>Page 1</h1>
-      </div>
-      <p>This useState test</p>
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <button style={{ margin: '10px' }} onClick={handleClick}>Click me</button>
+    <Outter title='Page 1'>
+      <p>This is usestate and useEffect test</p>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '50px' }}>
+        <div style={{ width: 'auto', display: 'inline-grid' }}>
+          <button style={{ margin: '10px' }} onClick={handleClick}>Click me</button>
+          <button style={{ margin: '10px' }} onClick={() => setCount(count + 1)}>Click me</button>
+        </div>
         <p style={{ margin: '10px' }}>Counter : {count}</p>
       </div>
-    </div>
+    </Outter>
   );
 }
-
-export default Page1
