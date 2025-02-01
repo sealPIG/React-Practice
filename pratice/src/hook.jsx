@@ -1,12 +1,18 @@
+// hook ?
+
 import { useState } from "react";
 
-const useValue = () => {
-    const [name, setName] = useState(false);
+const useCustomer = () => {
+    const [name, setName] = useState('Name2');
+    const [value, setValue] = useState(0);
 
     return {
         name,
-        setName
+        setName,
+
+        value,
+        setValue
     };
 };
 
-export { useValue };
+export { useCustomer };
