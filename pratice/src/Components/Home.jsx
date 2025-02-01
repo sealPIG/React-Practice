@@ -1,35 +1,10 @@
-// 生命週期、props 傳遞
+// 生命週期、props 傳遞、redux
 
 import React from 'react'
-import { Select, Space } from 'antd'
+import { Provider } from 'react-redux'
 import { Outter } from './Tools'
-
-function Selector() {
-  const handleChange = (param) => {
-    console.log('Param selected ' + param)
-  }
-
-  return (
-    <div className='selector'>
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <h3>Param select for page 3</h3>
-        <Space wrap>
-          <Select
-            onChange={handleChange}
-            defaultValue="Param1"
-            style={{ width: 120 }}
-            options={[
-              { value: 'Param1', label: 'Param1', },
-              { value: 'Param2', label: 'Param2', },
-              { value: 'Param3', label: 'Param3', },
-            ]}
-          />
-        </Space>
-      </div>
-      <hr />
-    </div>
-  )
-}
+import { reduxStore } from '../Redux/components'
+import { Param } from '../Redux/functions'
 
 class Home extends React.Component {
   constructor(props) {
@@ -63,9 +38,9 @@ class Home extends React.Component {
 
     return (
       <Outter title='Home' subTitle={this.state.date.toLocaleTimeString()}>
-        {/* <div className='home-selector'>
-          <Selector></Selector>
-        </div> */}
+        <Provider store={reduxStore}>
+          <Param />
+        </Provider>
       </Outter>
     )
   }

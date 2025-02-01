@@ -1,7 +1,6 @@
 // Router, useNavigate
 
-import { useNavigate } from 'react-router-dom'
-import { Routes, Route } from 'react-router-dom'
+import { useNavigate, Routes, Route } from 'react-router-dom'
 import { Flex, Segmented } from 'antd'
 import Home from './Components/Home'
 import Page1 from './Components/Page1'
@@ -22,17 +21,19 @@ function Application() {
         <Route path="/" element={<Home />} />
         <Route path="/page1" element={<Page1 />} />
         <Route path="/page2" element={<Page2 />} />
-        <Route path="/page3" element={<Page3/>} />
+        <Route path="/page3" element={<Page3 />} />
       </Routes>
 
       <Flex gap="small" align="flex-start" vertical style={{ position: 'fixed', bottom: '20px', left: '20px' }}>
-        <Segmented options={[
-          { label: (<div style={{ padding: 4 }}>Home</div>), value: '/' },
-          { label: (<div style={{ padding: 4 }}>Page 1</div>), value: '/page1' },
-          { label: (<div style={{ padding: 4 }}>Page 2</div>), value: '/page2' },
-          { label: (<div style={{ padding: 4 }}>Page 3</div>), value: '/page3' }
-        ]}
-          onChange={handleButtonClick} />
+        <Segmented
+          onChange={handleButtonClick}
+          options={[
+            { label: (<div style={{ padding: 4 }}>Home</div>), value: '/' },
+            { label: (<div style={{ padding: 4 }}>Page 1</div>), value: '/page1' },
+            { label: (<div style={{ padding: 4 }}>Page 2</div>), value: '/page2' },
+            { label: (<div style={{ padding: 4 }}>Page 3</div>), value: '/page3' }
+          ]}
+        />
       </Flex>
     </div>
   )
