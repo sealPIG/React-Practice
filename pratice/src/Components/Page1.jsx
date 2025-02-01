@@ -33,7 +33,7 @@ export default function Page1() {
 
   return (
     <Outter title='Page 1' subTitle='usestate, useEffect and useRef'>
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '50px' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingLeft: '30vw', paddingRight: '30vw' }}>
         <div style={{ width: 'auto', display: 'inline-grid' }}>
           <button style={{ margin: '10px' }} onClick={stateHandleClick}>function Click</button>
           <button style={{ margin: '10px' }} onClick={() => setStateCount(stateCount + 1)}>useState Click me</button>

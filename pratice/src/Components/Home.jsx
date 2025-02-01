@@ -1,14 +1,14 @@
 // 生命週期、props 傳遞
 
 import React from 'react'
-import { Select, Space } from 'antd';
+import { Select, Space } from 'antd'
 
-import Outter from './Tools';
+import Outter from './Tools'
 
 function Selector() {
   const handleChange = (param) => {
-    console.log('Param selected ' + param);
-  };
+    console.log('Param selected ' + param)
+  }
 
   return (
     <div className='selector'>
@@ -29,46 +29,46 @@ function Selector() {
       </div>
       <hr />
     </div>
-  );
+  )
 }
 
 class Home extends React.Component {
   constructor(props) {
-    super(props);
-    this.state = { date: new Date() };
+    super(props)
+    this.state = { date: new Date() }
 
-    console.log('[Home] Constructor');
+    console.log('[Home] Constructor')
   }
 
   componentDidMount() {
     this.timerID = setInterval(
       () => this.tick(),
       1000
-    );
+    )
 
-    console.log('[Home] Mounting');
+    console.log('[Home] Mounting')
   }
 
   componentWillUnmount() {
-    console.log('[Home] Unmounting');
+    console.log('[Home] Unmounting')
   }
 
   tick() {
     this.setState({
       date: new Date()
-    });
+    })
   }
 
   render() {
-    console.log('[Home] Render');
+    console.log('[Home] Render')
 
     return (
       <Outter title='Home' subTitle={this.state.date.toLocaleTimeString()}>
-        <div className='home-selector'>
+        {/* <div className='home-selector'>
           <Selector></Selector>
-        </div>
+        </div> */}
       </Outter>
-    );
+    )
   }
 }
 
