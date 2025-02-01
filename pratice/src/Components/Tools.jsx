@@ -2,7 +2,7 @@
 import './components.scss'
 
 function Outter(props) {
-  // const outterHeight = '80vh' - '4rem';
+  // const outterHeight = '80vh' - '4rem'
 
   return (
     <div className='outter'>
@@ -12,7 +12,7 @@ function Outter(props) {
       </div>
       {props.children}
     </div>
-  );
+  )
 }
 
 export default Outter

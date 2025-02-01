@@ -1,43 +1,42 @@
-// 生命週期、props 傳遞
-
 import React from 'react'
+import { createStore } from 'redux'
+import { connect, Provider } from 'react-redux'
+
 import Outter from './Tools'
 
-export default class Page2 extends React.Component { // ES6 class
-  constructor(props) {
-    super(props);
-    this.state = { date: new Date() };
+const initState = {
+  param: ' param 2',
+}
 
-    console.log('[Page 2] Constructor');
+const reducer = (state = initState, action) => {
+  switch (action.type) {
+    default:
+      return state
   }
+}
 
-  componentDidMount() {
-    this.timerID = setInterval(
-      () => this.tick(),
-      1000
-    );
+const store = createStore(reducer)
 
-    console.log('[Page 2] Mounting');
-  }
-
-  componentWillUnmount() {
-    console.log('[Page 2] Unmounting');
-  }
-
-  tick() {
-    this.setState({
-      date: new Date()
-    });
-  }
-
+class ConnectTitle extends React.Component {
   render() {
-    console.log('[Page 2] Render');
-
     return (
-      <Outter title='Page 2' subTitle={this.state.date.toLocaleTimeString()}>
-        <p>This is props test</p>
-        <p>props : {this.props.name}</p>
-      </Outter>
-    );
+      <p>Param = {this.props.param}</p>
+    )
   }
+}
+
+const mapStateToProps = state => ({
+  param: state.param
+})
+
+const Title = connect(mapStateToProps)(ConnectTitle)
+
+export default function Page2() {
+  return (
+    <Outter title='Page 2' subTitle='redux'>
+      <Provider store={store}>
+        <Title />
+      </Provider>
+    </Outter>
+  )
 }

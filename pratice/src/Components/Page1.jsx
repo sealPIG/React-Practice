@@ -1,40 +1,49 @@
-// usestate, useffect, 生命週期
+// usestate, useffect, useRef, 生命週期
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react'
 import Outter from './Tools'
 
-export default function Page3() {
-  console.log('[Page 1] Render');
+export default function Page1() {
+  console.log('[Page 1] Render')
 
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    setCount(0);
-    console.log('[Page 1] Mounting ' + count);
-  }, []);
+  const [stateCount, setStateCount] = useState(0)
+  const refCount = useRef(0)
 
   useEffect(() => {
-    console.log('[Page 1] Updating ' + count);
+    setStateCount(0)
+    console.log(`[Page 1] Mounting state Counter ${stateCount}`)
+  }, [])
+
+  useEffect(() => {
+    console.log(`[Page 1] Updating state Counter ${stateCount}`)
 
     return () => {
-      console.log('[Page 1] Unmounting ' + count);
+      console.log(`[Page 1] Unmounting state Counter ${stateCount}`)
     }
-  }, [count]);
+  }, [stateCount])
 
-  function handleClick() {
-    setCount(count + 1);
+  function stateHandleClick() {
+    setStateCount(stateCount + 1)
+  }
+
+  const refHandleClick = () => {
+    refCount.current++
+    console.log(`[Page 1] ref Counter : ${refCount.current}`)
   }
 
   return (
-    <Outter title='Page 1'>
-      <p>This is usestate and useEffect test</p>
+    <Outter title='Page 1' subTitle='usestate, useEffect and useRef'>
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '50px' }}>
         <div style={{ width: 'auto', display: 'inline-grid' }}>
-          <button style={{ margin: '10px' }} onClick={handleClick}>Click me</button>
-          <button style={{ margin: '10px' }} onClick={() => setCount(count + 1)}>Click me</button>
+          <button style={{ margin: '10px' }} onClick={stateHandleClick}>function Click</button>
+          <button style={{ margin: '10px' }} onClick={() => setStateCount(stateCount + 1)}>useState Click me</button>
+          <button style={{ margin: '10px' }} onClick={refHandleClick}>useRef Click</button>
         </div>
-        <p style={{ margin: '10px' }}>Counter : {count}</p>
+        <div style={{ width: 'auto', display: 'inline-grid' }}>
+          <p style={{ margin: '10px' }}>state Counter : {stateCount}</p>
+          <p style={{ margin: '10px' }}>ref Counter : {refCount.current}</p>
+        </div>
       </div>
     </Outter>
-  );
+  )
 }
