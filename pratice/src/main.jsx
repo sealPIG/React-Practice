@@ -1,13 +1,13 @@
 /**
- * hook
- * 生命週期
- * redux-saga
- * jotai 
- * tanskack-query
+ * ? hook
+ * ✓ 生命週期
+ * ✕ redux-saga
+ * ✕ jotai
+ * ✕ tanskack-query
  * 
- * useffect
- * usestate 
- * props 傳遞
+ * ✓ useffect
+ * ✓ usestate 
+ * ✓ props 傳遞
  */
 
 import { BrowserRouter } from 'react-router-dom'

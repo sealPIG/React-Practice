@@ -15,4 +15,4 @@ function Outter(props) {
   )
 }
 
-export default Outter
+export { Outter }

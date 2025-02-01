@@ -1,6 +1,5 @@
 import { Provider } from 'react-redux'
-
-import Outter from './Tools'
+import { Outter } from './Tools'
 import { reduxStore } from '../Redux/components'
 import { Param } from '../Redux/functions'
 

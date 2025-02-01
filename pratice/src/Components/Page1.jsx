@@ -1,7 +1,7 @@
 // usestate, useffect, useRef, 生命週期
 
 import { useState, useEffect, useRef } from 'react'
-import Outter from './Tools'
+import { Outter } from './Tools'
 
 export default function Page1() {
   console.log('[Page 1] Render')

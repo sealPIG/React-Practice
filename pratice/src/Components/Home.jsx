@@ -2,8 +2,7 @@
 
 import React from 'react'
 import { Select, Space } from 'antd'
-
-import Outter from './Tools'
+import { Outter } from './Tools'
 
 function Selector() {
   const handleChange = (param) => {
