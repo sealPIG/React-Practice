@@ -1,59 +1,41 @@
-import { Select, Space } from 'antd'
-import { Outter } from './Tools'
-import { useCustomer } from '../hook.jsx';
+// 生命週期、props 傳遞、redux
 
+import React from 'react';
+import { Outter } from './Tools';
 
-export default function Page3() {
-  const {
-    name, setName,
-    value, setValue
-  } = useCustomer()
+export class Page3 extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = { date: new Date() }
 
-  const handleNameChange = (name) => {
-    setName(name)
-  }
+    console.log('[Page 3] Constructor');
+  };
 
-  const handleValueChange = (value) => {
-    setValue(value)
-  }
+  componentDidMount() {
+    this.timerID = setInterval(
+      () => this.tick(),
+      1000
+    );
 
-  return (
-    <Outter title='Page 3' subTitle='hook'>
-      <div style={{ display: 'flex', alignItems: 'center', paddingLeft: '35vw' }}>
-        <Space wrap style={{ paddingRight: '5vw' }}>
-          <Select
-            onChange={handleNameChange}
-            defaultValue={name}
-            style={{ width: 120 }}
-            options={[
-              { value: 'Name1', label: 'Name1', },
-              { value: 'Name2', label: 'Name2', },
-              { value: 'Name3', label: 'Name3', },
-              { value: 'Name4', label: 'Name4', },
-              { value: 'Name5', label: 'Name5', },
-            ]}
-          />
-        </Space>
-        <p>Name = {name}</p>
-      </div>
-      <div style={{ display: 'flex', alignItems: 'center', paddingLeft: '35vw' }}>
-        <Space wrap style={{ paddingRight: '5vw' }}>
-          <Select
-            onChange={handleValueChange}
-            defaultValue={value}
-            style={{ width: 120 }}
-            options={[
-              { value: '0', label: '0', },
-              { value: '1', label: '1', },
-              { value: '2', label: '2', },
-              { value: '3', label: '3', },
-              { value: '4', label: '4', },
-              { value: '5', label: '5', },
-            ]}
-          />
-        </Space>
-        <p>Value = {value}</p>
-      </div>
-    </Outter>
-  )
+    console.log('[Page 3] Mounting');
+  };
+
+  componentWillUnmount() {
+    console.log('[Page 3] Unmounting');
+  };
+
+  tick() {
+    this.setState({
+      date: new Date()
+    });
+  };
+
+  render() {
+    console.log('[Page 3] Render');
+
+    return (
+      <Outter title='Page 3' subTitle={this.state.date.toLocaleTimeString()}>
+      </Outter>
+    )
+  };
 }

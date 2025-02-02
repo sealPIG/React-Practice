@@ -1,34 +1,34 @@
 // usestate, useffect, useRef, 生命週期
 
-import { useState, useEffect, useRef } from 'react'
-import { Outter } from './Tools'
+import { useState, useEffect, useRef } from 'react';
+import { Outter } from './Tools';
 
-export default function Page1() {
-  console.log('[Page 1] Render')
+export function Page1() {
+  console.log('[Page 1] Render');
 
-  const [stateCount, setStateCount] = useState(0)
-  const refCount = useRef(0)
-
-  useEffect(() => {
-    setStateCount(0)
-    console.log(`[Page 1] Mounting state Counter ${stateCount}`)
-  }, [])
+  const [stateCount, setStateCount] = useState(0);
+  const refCount = useRef(0);
 
   useEffect(() => {
-    console.log(`[Page 1] Updating state Counter ${stateCount}`)
+    setStateCount(0);
+    console.log(`[Page 1] Mounting state Counter ${stateCount}`);
+  }, []);
+
+  useEffect(() => {
+    console.log(`[Page 1] Updating state Counter ${stateCount}`);
 
     return () => {
-      console.log(`[Page 1] Unmounting state Counter ${stateCount}`)
+      console.log(`[Page 1] Unmounting state Counter ${stateCount}`);
     }
-  }, [stateCount])
+  }, [stateCount]);
 
   function stateHandleClick() {
     setStateCount(stateCount + 1)
   }
 
   const refHandleClick = () => {
-    refCount.current++
-    console.log(`[Page 1] ref Counter : ${refCount.current}`)
+    refCount.current++;
+    console.log(`[Page 1] ref Counter : ${refCount.current}`);
   }
 
   return (
@@ -45,5 +45,5 @@ export default function Page1() {
         </div>
       </div>
     </Outter>
-  )
+  );
 }

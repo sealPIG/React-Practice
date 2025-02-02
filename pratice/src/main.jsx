@@ -10,13 +10,17 @@
  * ✓ props 傳遞
  */
 
-import { BrowserRouter } from 'react-router-dom'
-import { createRoot } from 'react-dom/client'
-import Application from './App'
-import './index.css'
+import { BrowserRouter } from 'react-router-dom';
+import { createRoot } from 'react-dom/client';
+import { Provider } from 'react-redux';
+import { store } from './Redux/store';
+import Application from './App';
+import './index.css';
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
-    <Application />
+    <Provider store={store}>
+      <Application />
+    </Provider>
   </BrowserRouter>
 );

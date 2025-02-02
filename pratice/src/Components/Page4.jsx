@@ -1,19 +1,48 @@
-// jotai
-/**
- * React 狀態管理套件比較與原理實現 - https://medium.com/%E6%89%8B%E5%AF%AB%E7%AD%86%E8%A8%98/a-comparison-of-react-state-management-libraries-ba61db07332b
- * jotai github - https://github.com/pmndrs/jotai
- */
+// redux
 
-import { atom } from 'jotai'
-import Outter from './Tools'
+import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { addMovie, removeMovie } from '../Redux/movieSlice';
+import { Outter } from './Tools';
 
-export default function Page4() {
-  const count = atom(0)
+const MovieInput = () => {
+  const [newMovie, setNewMovie] = useState('');
+
+  const dispatch = useDispatch();
+
+  const handleAddMovie = () => {
+    if (newMovie) {
+      dispatch(addMovie(newMovie));
+      setNewMovie('');
+    }
+  }
+  const handleRemoveMovie = () => {
+    if (newMovie) {
+      dispatch(removeMovie(newMovie));
+      setNewMovie('');
+    }
+  }
 
   return (
-    <Outter title='Page 4'>
-          <button style={{ margin: '10px' }} onClick={stateHandleClick}>function Click</button>
-          <p style={{ margin: '10px' }}>state Counter : {stateCount}</p>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '10vh' }}>
+      <input style={{ marginRight: '3vw' }} onChange={(e) => setNewMovie(e.target.value)} value={newMovie} />
+      <button style={{ marginRight: '1vw' }} onClick={handleAddMovie}>Add</button>
+      <button style={{ marginRight: '1vw' }} onClick={handleRemoveMovie}>Remove</button>
+    </div>
+  );
+}
+
+export const Page4 = () => {
+  console.log('[Page 4] Render');
+
+  const movies = useSelector((state) => state.movies.movies);
+
+  return (
+    <Outter title='Page 4' subTitle='redux'>
+      <MovieInput />
+      {movies.map((movie) => (
+        <p key={movie.id}>{movie.name}</p>
+      ))}
     </Outter>
-  )
+  );
 }
