@@ -2,7 +2,7 @@
  * ？ hook
  * ✓ 生命週期
  * ✕ redux-saga
- * ✕ jotai
+ * ？ jotai
  * ✕ tanskack-query
  * 
  * ✓ useffect

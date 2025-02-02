@@ -1,10 +1,10 @@
 // 生命週期、props 傳遞、redux
-
 import { useSelector } from 'react-redux'
 import { Outter } from './Tools'
 
 export const Home = () => {
   console.log('[Home] Render');
+  
   const movies = useSelector((state) => state.movies.movies);
 
   return (

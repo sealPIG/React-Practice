@@ -1,5 +1,4 @@
 // redux
-
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addMovie, removeMovie } from '../Redux/movieSlice';

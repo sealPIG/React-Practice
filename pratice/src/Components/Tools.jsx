@@ -1,5 +1,5 @@
 // props 傳遞
-import './components.scss'
+import './components.scss';
 
 function Outter(props) {
   // const outterHeight = '80vh' - '4rem'

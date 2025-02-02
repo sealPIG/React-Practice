@@ -1,7 +1,6 @@
 // hook
-
-import { Select, Space } from 'antd'
-import { Outter } from './Tools'
+import { Select, Space } from 'antd';
+import { Outter } from './Tools';
 import { useCustomer } from '../hook.jsx';
 
 export function Page2() {
@@ -10,14 +9,14 @@ export function Page2() {
   const {
     name, setName,
     value, setValue
-  } = useCustomer()
+  } = useCustomer();
 
   const handleNameChange = (name) => {
-    setName(name)
+    setName(name);
   }
 
   const handleValueChange = (value) => {
-    setValue(value)
+    setValue(value);
   }
 
   return (
@@ -58,5 +57,5 @@ export function Page2() {
         <p>Value = {value}</p>
       </div>
     </Outter>
-  )
+  );
 }
